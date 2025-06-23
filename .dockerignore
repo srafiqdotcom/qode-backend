@@ -1,0 +1,68 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Documentation
+README.md
+CHANGELOG.md
+*.md
+
+# Docker files
+Dockerfile
+docker-compose*.yml
+.dockerignore
+
+# Environment files
+.env
+.env.*
+!.env.docker
+
+# Dependencies
+vendor
+
+# IDE files
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Laravel specific
+/storage/app/*
+!/storage/app/.gitignore
+!/storage/app/public
+/storage/framework/cache/*
+!/storage/framework/cache/.gitignore
+/storage/framework/sessions/*
+!/storage/framework/sessions/.gitignore
+/storage/framework/testing/*
+!/storage/framework/testing/.gitignore
+/storage/framework/views/*
+!/storage/framework/views/.gitignore
+/storage/logs/*
+!/storage/logs/.gitignore
+
+# Build artifacts
+/public/storage
+
+# Testing
+/coverage
+.phpunit.result.cache
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Backup files
+*.bak
+*.backup
+
+# Cache files
+bootstrap/cache/*
+!bootstrap/cache/.gitignore

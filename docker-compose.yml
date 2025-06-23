@@ -1,0 +1,163 @@
+version: "3.9"
+
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: qode_blog_app
+        restart: unless-stopped
+        expose:
+            - "9000"
+        volumes:
+            - .:/var/www/html
+        environment:
+            APP_ENV: ${APP_ENV}
+            APP_DEBUG: ${APP_DEBUG}
+            SEED_DATABASE: "false"  # Will not run automatically
+        depends_on:
+            - mysql
+            - redis
+        networks:
+            - qode_blog_network
+
+    # Queue Worker
+    queue:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: qode_blog_queue
+        restart: unless-stopped
+        volumes:
+            - .:/var/www/html
+        environment:
+            CONTAINER_ROLE: queue
+            APP_ENV: ${APP_ENV}
+            APP_DEBUG: ${APP_DEBUG}
+        depends_on:
+            - mysql
+            - redis
+        networks:
+            - qode_blog_network
+        entrypoint: []
+        command: ["php", "artisan", "queue:work", "redis", "--queue=emails,default", "--tries=3", "--timeout=60", "--sleep=3", "--verbose"]
+
+    # Scheduler
+    scheduler:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: qode_blog_scheduler
+        restart: unless-stopped
+        volumes:
+            - .:/var/www/html
+        environment:
+            CONTAINER_ROLE: scheduler
+            APP_ENV: ${APP_ENV}
+            APP_DEBUG: ${APP_DEBUG}
+        depends_on:
+            - mysql
+            - redis
+        networks:
+            - qode_blog_network
+        entrypoint: []
+        command: ["sh", "-c", "while true; do php artisan schedule:run; sleep 60; done"]
+
+    mysql:
+        image: mysql:8.0
+        container_name: qode_blog_mysql
+        restart: unless-stopped
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_DATABASE: qode_blog
+            MYSQL_USER: laravel
+            MYSQL_PASSWORD: password
+            MYSQL_ROOT_PASSWORD: rootpassword
+        volumes:
+            - mysql_data:/var/lib/mysql
+        networks:
+            - qode_blog_network
+
+    redis:
+        image: redis:7-alpine
+        container_name: qode_blog_redis
+        restart: unless-stopped
+        ports:
+            - "6379:6379"
+        volumes:
+            - redis_data:/data
+        networks:
+            - qode_blog_network
+
+    nginx:
+        image: nginx:alpine
+        container_name: qode_blog_nginx
+        restart: unless-stopped
+        ports:
+            - "8000:80"
+        volumes:
+            - .:/var/www/html
+            - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+        depends_on:
+            - app
+        networks:
+            - qode_blog_network
+    # Redis Commander - optional tool for local Redis UI
+    redis-commander:
+        image: rediscommander/redis-commander:latest
+        container_name: qode_blog_redis_commander
+        restart: unless-stopped
+        ports:
+            - "8081:8081"
+        environment:
+            REDIS_HOSTS: local:redis:6379
+            HTTP_USER: admin
+            HTTP_PASSWORD: admin
+        depends_on:
+            - redis
+        networks:
+            - qode_blog_network
+        profiles:
+            - local
+
+    # Optional: Mailhog for local only
+    mailhog:
+        image: mailhog/mailhog:latest
+        container_name: qode_blog_mailhog
+        restart: unless-stopped
+        ports:
+            - "1025:1025"
+            - "8025:8025"
+        networks:
+            - qode_blog_network
+        profiles:
+            - local
+
+    # phpMyAdmin - optional tool
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin:latest
+        container_name: qode_blog_phpmyadmin
+        restart: unless-stopped
+        ports:
+            - "8080:80"
+        environment:
+            PMA_HOST: mysql
+            PMA_USER: laravel
+            PMA_PASSWORD: password
+        depends_on:
+            - mysql
+        networks:
+            - qode_blog_network
+        profiles:
+            - local
+
+volumes:
+    mysql_data:
+    redis_data:
+
+networks:
+    qode_blog_network:
+        driver: bridge
+
+

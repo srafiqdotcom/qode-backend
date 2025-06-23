@@ -1,0 +1,927 @@
+type: collection.insomnia.rest/5.0
+name: Scratch Pad
+meta:
+  id: wrk_scratchpad
+  created: 1750634983986
+  modified: 1750634983986
+  description: ""
+collection:
+  - name: 📝 Blog Management
+    meta:
+      id: fld_0c39dba16d7f4ec1a0cf0f19623d53a9
+      created: 1703116800000
+      modified: 1703116800000
+      sortKey: -1703116798000
+      description: Blog management endpoints - Authors only
+    children:
+      - url: "{{ _.base_url }}/api/blogs/1/publish"
+        name: Publish Blog
+        meta:
+          id: req_1302f3d30a4b4901b48f392c2e74202b
+          created: 1703116800000
+          modified: 1703116800000
+          isPrivate: false
+          description: Publish a draft blog post (Authors only)
+          sortKey: -1703116786000
+        method: POST
+        headers:
+          - name: Authorization
+            value: Bearer {{ _.access_token }}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/api/blogs/57697"
+        name: Update Blog
+        meta:
+          id: req_1a5494f9dc474032beb27418f5d0f96d
+          created: 1703116800000
+          modified: 1750649346224
+          isPrivate: false
+          description: Update an existing blog post (Authors only)
+          sortKey: -1703116788000
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "title": "Updated Blog Post Title",
+              "excerpt": "Updated excerpt",
+              "description": "Updated content with **markdown**",
+              "status": "published"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+            id: pair_25ff69e84f4d409db1f5e50bc793bc81
+          - name: Authorization
+            value: Bearer {{ _.access_token }}
+            id: pair_9b504d87d1364a06b190b101102f8d3c
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/api/blogs/57698"
+        name: Delete Blog
+        meta:
+          id: req_41a5e63544bb4ad9b53ed8e9d2ece7a6
+          created: 1703116800000
+          modified: 1750649482324
+          isPrivate: false
+          description: Delete a blog post (Authors only)
+          sortKey: -1703116787000
+        method: DELETE
+        headers:
+          - name: Authorization
+            value: Bearer {{ _.access_token }}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/api/blogs"
+        name: Create Blog
+        meta:
+          id: req_570d9bf35bde4665b4ca8a002318ce8e
+          created: 1703116800000
+          modified: 1703116800000
+          isPrivate: false
+          description: Create a new blog post (Authors only)
+          sortKey: -1703116789000
+        method: POST
+        body:
+          mimeType: application/json
+          text: >-
+            {
+              "title": "My New Blog Post",
+              "excerpt": "This is a short excerpt of the blog post",
+              "description": "This is the full content of the blog post with **markdown** support.",
+              "keywords": ["laravel", "php", "tutorial"],
+              "meta_title": "SEO optimized title",
+              "meta_description": "SEO optimized description",
+              "status": "draft",
+              "image_alt": "Blog post featured image",
+              "tags": ["laravel", "php"]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: Authorization
+            value: Bearer {{ _.access_token }}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/api/blogs/1/schedule"
+        name: Schedule Blog
+        meta:
+          id: req_9a467eb29b374597bc61639aa83a5fd3
+          created: 1703116800000
+          modified: 1703116800000
+          isPrivate: false
+          description: Schedule a blog post for future publication (Authors only)
+          sortKey: -1703116785000
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "scheduled_at": "2024-12-31T10:00:00Z"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: Authorization
+            value: Bearer {{ _.access_token }}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/api/blogs/1/draft"
+        name: Move to Draft
+        meta:
+          id: req_fe1dcc8a5c6b4afa8ceea844500e59e6
+          created: 1703116800000
+          modified: 1703116800000
+          isPrivate: false
+          description: Move a blog post back to draft status (Authors only)
+          sortKey: -1703116784000
+        method: POST
+        headers:
+          - name: Authorization
+            value: Bearer {{ _.access_token }}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: 🏷️ Tags (Public)
+    meta:
+      id: fld_2c1e27826ab54647b7f3601806d9de50
+      created: 1703116800000
+      modified: 1703116800000
+      sortKey: -1703116797000
+      description: Public tag endpoints - no authentication required
+    children:
+      - url: "{{ _.base_url }}/api/tags/popular"
+        name: Popular Tags
+        meta:
+          id: req_3de2a58654c0410cb8e06a0c4e967f0b
+          created: 1703116800000
+          modified: 1703116800000
+          isPrivate: false
+          description: Get most popular tags by blog count
+          sortKey: -1703116782000
+        method: GET
+        parameters:
+          - name: limit
+            value: "10"
+            disabled: true
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/api/tags"
+        name: List Tags
+        meta:
+          id: req_4c22cac7dd8c43eb825b9480745d48ec
+          created: 1703116800000
+          modified: 1703116800000
+          isPrivate: false
+          description: Get list of all tags
+          sortKey: -1703116783000
+        method: GET
+        parameters:
+          - name: search
+            value: laravel
+            disabled: true
+          - name: order_by
+            value: blogs_count
+            disabled: true
+          - name: order
+            value: desc
+            disabled: true
+          - name: per_page
+            value: "20"
+            disabled: true
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/api/tags/1"
+        name: Get Tag by ID
+        meta:
+          id: req_56923561a6224ce0a81d2269b5907866
+          created: 1703116800000
+          modified: 1703116800000
+          isPrivate: false
+          description: Get a specific tag by ID or UUID
+          sortKey: -1703116781000
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: 💬 Comments (Public)
+    meta:
+      id: fld_44ac85c31e4c4e4b85dbb8191dcfcaf5
+      created: 1703116800000
+      modified: 1703116800000
+      sortKey: -1703116795000
+      description: Public comment endpoints - no authentication required
+    children:
+      - url: "{{ _.base_url }}/api/comments/1"
+        name: Get Comment by ID
+        meta:
+          id: req_404c1d1a4477456ba008f85c72e9704a
+          created: 1703116800000
+          modified: 1703116800000
+          isPrivate: false
+          description: Get a specific comment by ID
+          sortKey: -1703116776000
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/api/blogs/1/comments"
+        name: Get Comments by Blog
+        meta:
+          id: req_a9d13dfb947b437288b3b02d5a7b0d32
+          created: 1703116800000
+          modified: 1703116800000
+          isPrivate: false
+          description: Get all comments for a specific blog post
+          sortKey: -1703116777000
+        method: GET
+        parameters:
+          - name: status
+            value: approved
+            disabled: true
+          - name: order_by
+            value: created_at
+            disabled: true
+          - name: order
+            value: desc
+            disabled: true
+          - name: per_page
+            value: "20"
+            disabled: true
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: 🏷️ Tag Management
+    meta:
+      id: fld_6ac6820ed3c2485db7a6c5ca977df981
+      created: 1703116800000
+      modified: 1703116800000
+      sortKey: -1703116796000
+      description: Tag management endpoints - Authors only
+    children:
+      - url: "{{ _.base_url }}/api/tags"
+        name: Create Tag
+        meta:
+          id: req_1e1a49bb3e8441349c6092081fe54c59
+          created: 1703116800000
+          modified: 1750649510828
+          isPrivate: false
+          description: Create a new tag (Authors only)
+          sortKey: -1703116780000
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "name": "Laravel",
+              "description": "Laravel PHP framework related posts",
+              "color": "#FF2D20"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: Authorization
+            value: Bearer {{ _.access_token }}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/api/tags/1"
+        name: Delete Tag
+        meta:
+          id: req_7d9c08a85871481ca9a2ca7156cca453
+          created: 1703116800000
+          modified: 1703116800000
+          isPrivate: false
+          description: Delete a tag (Authors only)
+          sortKey: -1703116778000
+        method: DELETE
+        headers:
+          - name: Authorization
+            value: Bearer {{ _.access_token }}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/api/tags/1"
+        name: Update Tag
+        meta:
+          id: req_86c0d404ae2a440199138f7db2df4174
+          created: 1703116800000
+          modified: 1703116800000
+          isPrivate: false
+          description: Update an existing tag (Authors only)
+          sortKey: -1703116779000
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "name": "Laravel Framework",
+              "description": "Updated description for Laravel",
+              "color": "#FF2D20"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: Authorization
+            value: Bearer {{ _.access_token }}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: 🔐 Authentication
+    meta:
+      id: fld_9848f134a65741cca049e46627b25391
+      created: 1703116800000
+      modified: 1703116800000
+      sortKey: -1703116800000
+      description: Passwordless OTP authentication endpoints
+    children:
+      - url: "{{ _.base_url }}/api/auth/request-otp"
+        name: Request OTP
+        meta:
+          id: req_4dfdf029a1cc4797bd576e54521afbea
+          created: 1703116800000
+          modified: 1750641348488
+          isPrivate: false
+          description: Request OTP for passwordless login
+          sortKey: -1703116799000
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "email": "shahidrafiq7@yahoo.com"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/api/register"
+        name: Register User
+        meta:
+          id: req_748b98fb120f4b90823102836f6e7738
+          created: 1703116800000
+          modified: 1750635509892
+          isPrivate: false
+          description: Register a new user with passwordless authentication
+          sortKey: -1703116800000
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "name": "John Doe",
+              "email": "john12@example.com",
+              "role": "reader"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/api/auth/logout"
+        name: Logout
+        meta:
+          id: req_acd152d4ea3d48b0b1a88655ecaf5e17
+          created: 1703116800000
+          modified: 1703116800000
+          isPrivate: false
+          description: Logout user and invalidate token
+          sortKey: -1703116797000
+        method: POST
+        headers:
+          - name: Authorization
+            value: Bearer {{ _.access_token }}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/api/auth/verify-otp"
+        name: Verify OTP & Login
+        meta:
+          id: req_b6be3c088fa6448a8e2dc35903de6bb5
+          created: 1703116800000
+          modified: 1750641381836
+          isPrivate: false
+          description: Verify OTP code and get access token
+          sortKey: -1703116798000
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "email": "shahidrafiq7@yahoo.com",
+              "otp_code": "543900",
+              "purpose": "login"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: 💬 Comment Management
+    meta:
+      id: fld_f27ed93a09e84eaf8f4be6a7a7204d90
+      created: 1703116800000
+      modified: 1703116800000
+      sortKey: -1703116794000
+      description: Comment management endpoints - Authenticated users
+    children:
+      - url: "{{ _.base_url }}/api/comments/1"
+        name: Update Comment
+        meta:
+          id: req_37d982d70b9645288e821eac51774a60
+          created: 1703116800000
+          modified: 1703116800000
+          isPrivate: false
+          description: Update an existing comment (Comment author only)
+          sortKey: -1703116774000
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "content": "Updated comment content with **markdown** support."
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: Authorization
+            value: Bearer {{ _.access_token }}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/api/comments"
+        name: Create Comment
+        meta:
+          id: req_80cbd548a54a4acb908c7fe43881db90
+          created: 1703116800000
+          modified: 1703116800000
+          isPrivate: false
+          description: Create a new comment on a blog post (Authenticated users)
+          sortKey: -1703116775000
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "blog_id": "1",
+              "content": "This is a great blog post! Thanks for sharing.",
+              "parent_id": null
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: Authorization
+            value: Bearer {{ _.access_token }}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/api/comments/1"
+        name: Delete Comment
+        meta:
+          id: req_ba600d6d1af64d9e84f649ad8136a350
+          created: 1703116800000
+          modified: 1703116800000
+          isPrivate: false
+          description: Delete a comment (Comment author or moderator)
+          sortKey: -1703116773000
+        method: DELETE
+        headers:
+          - name: Authorization
+            value: Bearer {{ _.access_token }}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: 📝 Blogs (Public)
+    meta:
+      id: fld_f38dcf0c994b45a69d9df5e067d7d966
+      created: 1703116800000
+      modified: 1703116800000
+      sortKey: -1703116799000
+      description: Public blog endpoints - no authentication required
+    children:
+      - url: "{{ _.base_url }}/api/blogs"
+        name: List Blogs
+        meta:
+          id: req_45c782480f964628b0280eef8cfa08cf
+          created: 1703116800000
+          modified: 1750636615980
+          isPrivate: false
+          description: Get paginated list of published blogs
+          sortKey: -1703116796000
+        method: GET
+        parameters:
+          - name: per_page
+            value: "10"
+            disabled: false
+            id: pair_8731e9cfda3f475eb462f2baadccda31
+          - name: page
+            value: "1"
+            disabled: false
+            id: pair_4f213160193e491e80cbf5b2424ffe29
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/api/blogs/tag/laravel"
+        name: Get Blogs by Tag
+        meta:
+          id: req_5f90df072b5242e1b3b91d2aa5bb6b02
+          created: 1703116800000
+          modified: 1703116800000
+          isPrivate: false
+          description: Get blogs filtered by tag slug
+          sortKey: -1703116791000
+        method: GET
+        parameters:
+          - name: per_page
+            value: "10"
+            disabled: true
+          - name: order_by
+            value: created_at
+            disabled: true
+          - name: order
+            value: desc
+            disabled: true
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/api/blogs/search"
+        name: Search Blogs
+        meta:
+          id: req_759cadf989ba4bafaf033e7965bda9bb
+          created: 1703116800000
+          modified: 1750636359585
+          isPrivate: false
+          description: Search blogs by query, tags, and author
+          sortKey: -1703116794000
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        parameters:
+          - name: query
+            value: laravel
+          - name: tags[]
+            value: php
+            disabled: true
+          - name: author
+            value: "1"
+            disabled: true
+          - name: per_page
+            value: "10"
+            disabled: true
+          - name: highlight
+            value: "true"
+            disabled: true
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/api/blogs/57697"
+        name: Get Blog by ID
+        meta:
+          id: req_d9eea8b9853442c98890c648d1ae4239
+          created: 1703116800000
+          modified: 1750641271290
+          isPrivate: false
+          description: Get a specific blog by ID or UUID
+          sortKey: -1703116795000
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/api/blogs/author/57697"
+        name: Get Blogs by Author
+        meta:
+          id: req_e87445e9116c47b0a631253ba923268f
+          created: 1703116800000
+          modified: 1750641148806
+          isPrivate: false
+          description: Get blogs filtered by author ID
+          sortKey: -1703116790000
+        method: GET
+        parameters:
+          - name: per_page
+            value: "10"
+            disabled: true
+          - name: order_by
+            value: created_at
+            disabled: true
+          - name: order
+            value: desc
+            disabled: true
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: 👥 Users
+    meta:
+      id: fld_f6a487448de2400292e8b33b5155263f
+      created: 1703116800000
+      modified: 1703116800000
+      sortKey: -1703116792000
+      description: User management endpoints - Authenticated users
+    children:
+      - url: "{{ _.base_url }}/api/users/1"
+        name: Get User by ID
+        meta:
+          id: req_0502f02b67f645d08b79773999d4f7c4
+          created: 1703116800000
+          modified: 1703116800000
+          isPrivate: false
+          description: Get a specific user by ID (Authenticated users)
+          sortKey: -1703116767000
+        method: GET
+        headers:
+          - name: Authorization
+            value: Bearer {{ _.access_token }}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/api/users/1"
+        name: Update User
+        meta:
+          id: req_22834684616b444aa8ac5a173e360fce
+          created: 1703116800000
+          modified: 1703116800000
+          isPrivate: false
+          description: Update an existing user (Authenticated users)
+          sortKey: -1703116765000
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "first_name": "Jane",
+              "last_name": "Smith",
+              "email": "jane.smith@example.com"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: Authorization
+            value: Bearer {{ _.access_token }}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/api/users"
+        name: List Users
+        meta:
+          id: req_8e36af179a1049d9b785aa4597f9a401
+          created: 1703116800000
+          modified: 1703116800000
+          isPrivate: false
+          description: Get paginated list of users (Authenticated users)
+          sortKey: -1703116768000
+        method: GET
+        parameters:
+          - name: filters[name][like]
+            value: john
+            disabled: true
+          - name: filters[email][like]
+            value: example.com
+            disabled: true
+          - name: order_by
+            value: first_name
+            disabled: true
+          - name: order
+            value: asc
+            disabled: true
+          - name: rpp
+            value: "10"
+            disabled: true
+          - name: page
+            value: "1"
+            disabled: true
+        headers:
+          - name: Authorization
+            value: Bearer {{ _.access_token }}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/api/users/1"
+        name: Delete User
+        meta:
+          id: req_94dfd8b5b1844c0b900163e12613ac43
+          created: 1703116800000
+          modified: 1703116800000
+          isPrivate: false
+          description: Delete a user (Authenticated users)
+          sortKey: -1703116764000
+        method: DELETE
+        headers:
+          - name: Authorization
+            value: Bearer {{ _.access_token }}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/api/users"
+        name: Create User
+        meta:
+          id: req_aeb40b1499e24c81aaa53ab4d13266f2
+          created: 1703116800000
+          modified: 1703116800000
+          isPrivate: false
+          description: Create a new user (Authenticated users)
+          sortKey: -1703116766000
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "first_name": "John",
+              "last_name": "Doe",
+              "email": "john.doe@example.com",
+              "password": "password123"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: Authorization
+            value: Bearer {{ _.access_token }}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1750634998400
+    modified: 1750634998400
+environments:
+  name: Base Environment
+  meta:
+    id: env_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1750634998341
+    modified: 1750641403314
+    isPrivate: false
+  data:
+    base_url: http://localhost:8000
+    access_token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiYjQ0MDNlODg3MzkzZDE1ZWQ4MDdlYzYwODc3ZDY3MmQ1M2NkZDBmM2RmNWVhZTAxNmEwMGY3MTU5OTc5NTM3ODJjNTU5YmY1NzE0NjllZDciLCJpYXQiOjE3NTA2NDEzODMuNzU0ODMyLCJuYmYiOjE3NTA2NDEzODMuNzU0ODMzLCJleHAiOjE3ODIxNzczODMuNzM4MjY4LCJzdWIiOiI3MTA3MyIsInNjb3BlcyI6W119.NJhMZ4lKjGH74DiYlAR3RQlsLnaqKTMJN0O8e2nOEhWntKbPpmFAf9PPXh16qEeLyWgrKoqQowV7GG2muKnnKK2vybzG8R_WTvSeiQbQDHYyF7lhivirZp4bHVBQLR3W85flMiHH1eLGrVkr7xrGjXxDca7k0YkXcdVv76RPP2IHZkqiHcD_iiUe6wmsG8jotLV1JzPYVWTrZeKE7Md9Rk2MkVBD6UaMZDPHVtTdDPeqCpYcqVl_FzVL4CnHFBeft3Icgz9C2Br9wLGZSyc1H7Mv75dE8QtfIoyqYB7oTevX59w3-Wgfq0oZ4I0njJjnIuo6HCd7scVP5k9FV7-gjIPqQ1Wm9hVVmKBG9D18NegmP3OYihB4PtJcTLO11d9w_TA9eW6lJ_H1HEPkqWjNxpaFUZ3Rjm4lI24b6yYb44-8YjPCvTd0iH-346NHM1jhusYcEH5CibJ2_dJIlcBU5gZUaf-Y7VtipRtIqk9gxdhLUcn5735iRMd2ru7R4CbywJAYVX1XCBNOsjz8dgK6WRDtHCuxclKCjqqjngtZk7UY6iLrODH8WGfVl1MYR5_GiwbaN6Hiia0klz8Vx3cmgR62baOTO_qJhimFsDo8fZ4u0YlfbhtxOWc0-N7KfstqI8y9qY9gVY7S3si68Y7RDDW3wcCh4lQ9Q3exkYKqrNM

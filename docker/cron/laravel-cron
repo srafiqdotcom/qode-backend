@@ -1,0 +1,17 @@
+# Laravel Scheduler
+* * * * * www-data cd /var/www/html && php artisan schedule:run >> /dev/null 2>&1
+
+# Log rotation for Laravel logs
+0 0 * * * www-data find /var/www/html/storage/logs -name "*.log" -mtime +30 -delete
+
+# Clear expired OTP codes (daily at 2 AM)
+0 2 * * * www-data cd /var/www/html && php artisan otp:cleanup >> /dev/null 2>&1
+
+# Generate search statistics (daily at 3 AM)
+0 3 * * * www-data cd /var/www/html && php artisan search:stats >> /var/www/html/storage/logs/search-stats.log 2>&1
+
+# Generate queue statistics (every hour)
+0 * * * * www-data cd /var/www/html && php artisan queue:stats >> /var/www/html/storage/logs/queue-stats.log 2>&1
+
+# Backup database (daily at 1 AM) - uncomment if needed
+# 0 1 * * * www-data cd /var/www/html && php artisan backup:run >> /var/www/html/storage/logs/backup.log 2>&1

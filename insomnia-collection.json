@@ -1,0 +1,1178 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2025-06-21T00:00:00.000Z",
+  "__export_source": "insomnia.desktop.app:v2023.5.8",
+  "resources": [
+    {
+      "_id": "req_auth_register",
+      "parentId": "fld_auth",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/register",
+      "name": "Register User",
+      "description": "Register a new user with passwordless authentication",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"role\": \"reader\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1703116800000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_auth_request_otp",
+      "parentId": "fld_auth",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/auth/request-otp",
+      "name": "Request OTP",
+      "description": "Request OTP for passwordless login",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"john@example.com\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1703116799000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_auth_verify_otp",
+      "parentId": "fld_auth",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/auth/verify-otp",
+      "name": "Verify OTP & Login",
+      "description": "Verify OTP code and get access token",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"john@example.com\",\n  \"otp_code\": \"123456\",\n  \"purpose\": \"login\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1703116798000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_auth_logout",
+      "parentId": "fld_auth",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/auth/logout",
+      "name": "Logout",
+      "description": "Logout user and invalidate token",
+      "method": "POST",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.access_token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1703116797000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_blogs_list",
+      "parentId": "fld_blogs",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/blogs",
+      "name": "List Blogs",
+      "description": "Get paginated list of published blogs",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "per_page",
+          "value": "10",
+          "disabled": true
+        },
+        {
+          "name": "page",
+          "value": "1",
+          "disabled": true
+        }
+      ],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1703116796000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_blogs_show",
+      "parentId": "fld_blogs",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/blogs/1",
+      "name": "Get Blog by ID",
+      "description": "Get a specific blog by ID or UUID",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1703116795000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_blogs_search",
+      "parentId": "fld_blogs",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/blogs/search",
+      "name": "Search Blogs",
+      "description": "Search blogs by query, tags, and author",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "query",
+          "value": "laravel"
+        },
+        {
+          "name": "tags[]",
+          "value": "php",
+          "disabled": true
+        },
+        {
+          "name": "author",
+          "value": "1",
+          "disabled": true
+        },
+        {
+          "name": "per_page",
+          "value": "10",
+          "disabled": true
+        },
+        {
+          "name": "highlight",
+          "value": "true",
+          "disabled": true
+        }
+      ],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1703116794000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_blogs_search_suggestions",
+      "parentId": "fld_blogs",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/blogs/search/suggestions",
+      "name": "Search Suggestions",
+      "description": "Get search suggestions for autocomplete",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "query",
+          "value": "lar"
+        }
+      ],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1703116793000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_blogs_advanced_search",
+      "parentId": "fld_blogs",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/blogs/search/advanced",
+      "name": "Advanced Search",
+      "description": "Advanced blog search with multiple filters",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "query",
+          "value": "laravel",
+          "disabled": true
+        },
+        {
+          "name": "title",
+          "value": "tutorial",
+          "disabled": true
+        },
+        {
+          "name": "content",
+          "value": "php",
+          "disabled": true
+        },
+        {
+          "name": "tags[]",
+          "value": "php",
+          "disabled": true
+        },
+        {
+          "name": "author",
+          "value": "1",
+          "disabled": true
+        },
+        {
+          "name": "date_from",
+          "value": "2024-01-01",
+          "disabled": true
+        },
+        {
+          "name": "date_to",
+          "value": "2024-12-31",
+          "disabled": true
+        },
+        {
+          "name": "min_views",
+          "value": "100",
+          "disabled": true
+        },
+        {
+          "name": "max_views",
+          "value": "1000",
+          "disabled": true
+        },
+        {
+          "name": "sort_by",
+          "value": "relevance",
+          "disabled": true
+        },
+        {
+          "name": "sort_order",
+          "value": "desc",
+          "disabled": true
+        }
+      ],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1703116792000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_blogs_by_tag",
+      "parentId": "fld_blogs",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/blogs/tag/laravel",
+      "name": "Get Blogs by Tag",
+      "description": "Get blogs filtered by tag slug",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "per_page",
+          "value": "10",
+          "disabled": true
+        },
+        {
+          "name": "order_by",
+          "value": "created_at",
+          "disabled": true
+        },
+        {
+          "name": "order",
+          "value": "desc",
+          "disabled": true
+        }
+      ],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1703116791000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_blogs_by_author",
+      "parentId": "fld_blogs",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/blogs/author/1",
+      "name": "Get Blogs by Author",
+      "description": "Get blogs filtered by author ID",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "per_page",
+          "value": "10",
+          "disabled": true
+        },
+        {
+          "name": "order_by",
+          "value": "created_at",
+          "disabled": true
+        },
+        {
+          "name": "order",
+          "value": "desc",
+          "disabled": true
+        }
+      ],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1703116790000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_blogs_create",
+      "parentId": "fld_blogs_management",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/blogs",
+      "name": "Create Blog",
+      "description": "Create a new blog post (Authors only)",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"title\": \"My New Blog Post\",\n  \"excerpt\": \"This is a short excerpt of the blog post\",\n  \"description\": \"This is the full content of the blog post with **markdown** support.\",\n  \"keywords\": [\"laravel\", \"php\", \"tutorial\"],\n  \"meta_title\": \"SEO optimized title\",\n  \"meta_description\": \"SEO optimized description\",\n  \"status\": \"draft\",\n  \"image_alt\": \"Blog post featured image\",\n  \"tags\": [\"laravel\", \"php\"]\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.access_token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1703116789000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_blogs_update",
+      "parentId": "fld_blogs_management",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/blogs/1",
+      "name": "Update Blog",
+      "description": "Update an existing blog post (Authors only)",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"title\": \"Updated Blog Post Title\",\n  \"excerpt\": \"Updated excerpt\",\n  \"description\": \"Updated content with **markdown**\",\n  \"status\": \"published\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.access_token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1703116788000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_blogs_delete",
+      "parentId": "fld_blogs_management",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/blogs/1",
+      "name": "Delete Blog",
+      "description": "Delete a blog post (Authors only)",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.access_token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1703116787000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_blogs_publish",
+      "parentId": "fld_blogs_management",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/blogs/1/publish",
+      "name": "Publish Blog",
+      "description": "Publish a draft blog post (Authors only)",
+      "method": "POST",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.access_token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1703116786000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_blogs_schedule",
+      "parentId": "fld_blogs_management",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/blogs/1/schedule",
+      "name": "Schedule Blog",
+      "description": "Schedule a blog post for future publication (Authors only)",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"scheduled_at\": \"2024-12-31T10:00:00Z\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.access_token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1703116785000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_blogs_draft",
+      "parentId": "fld_blogs_management",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/blogs/1/draft",
+      "name": "Move to Draft",
+      "description": "Move a blog post back to draft status (Authors only)",
+      "method": "POST",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.access_token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1703116784000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_tags_list",
+      "parentId": "fld_tags",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/tags",
+      "name": "List Tags",
+      "description": "Get list of all tags",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "search",
+          "value": "laravel",
+          "disabled": true
+        },
+        {
+          "name": "order_by",
+          "value": "blogs_count",
+          "disabled": true
+        },
+        {
+          "name": "order",
+          "value": "desc",
+          "disabled": true
+        },
+        {
+          "name": "per_page",
+          "value": "20",
+          "disabled": true
+        }
+      ],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1703116783000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_tags_popular",
+      "parentId": "fld_tags",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/tags/popular",
+      "name": "Popular Tags",
+      "description": "Get most popular tags by blog count",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "limit",
+          "value": "10",
+          "disabled": true
+        }
+      ],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1703116782000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_tags_show",
+      "parentId": "fld_tags",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/tags/1",
+      "name": "Get Tag by ID",
+      "description": "Get a specific tag by ID or UUID",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1703116781000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_tags_create",
+      "parentId": "fld_tags_management",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/tags",
+      "name": "Create Tag",
+      "description": "Create a new tag (Authors only)",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Laravel\",\n  \"description\": \"Laravel PHP framework related posts\",\n  \"color\": \"#FF2D20\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.access_token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1703116780000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_tags_update",
+      "parentId": "fld_tags_management",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/tags/1",
+      "name": "Update Tag",
+      "description": "Update an existing tag (Authors only)",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Laravel Framework\",\n  \"description\": \"Updated description for Laravel\",\n  \"color\": \"#FF2D20\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.access_token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1703116779000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_tags_delete",
+      "parentId": "fld_tags_management",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/tags/1",
+      "name": "Delete Tag",
+      "description": "Delete a tag (Authors only)",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.access_token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1703116778000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_comments_by_blog",
+      "parentId": "fld_comments",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/blogs/1/comments",
+      "name": "Get Comments by Blog",
+      "description": "Get all comments for a specific blog post",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "status",
+          "value": "approved",
+          "disabled": true
+        },
+        {
+          "name": "order_by",
+          "value": "created_at",
+          "disabled": true
+        },
+        {
+          "name": "order",
+          "value": "desc",
+          "disabled": true
+        },
+        {
+          "name": "per_page",
+          "value": "20",
+          "disabled": true
+        }
+      ],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1703116777000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_comments_show",
+      "parentId": "fld_comments",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/comments/1",
+      "name": "Get Comment by ID",
+      "description": "Get a specific comment by ID",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1703116776000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_comments_create",
+      "parentId": "fld_comments_management",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/comments",
+      "name": "Create Comment",
+      "description": "Create a new comment on a blog post (Authenticated users)",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"blog_id\": \"1\",\n  \"content\": \"This is a great blog post! Thanks for sharing.\",\n  \"parent_id\": null\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.access_token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1703116775000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_comments_update",
+      "parentId": "fld_comments_management",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/comments/1",
+      "name": "Update Comment",
+      "description": "Update an existing comment (Comment author only)",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"content\": \"Updated comment content with **markdown** support.\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.access_token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1703116774000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_comments_delete",
+      "parentId": "fld_comments_management",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/comments/1",
+      "name": "Delete Comment",
+      "description": "Delete a comment (Comment author or moderator)",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.access_token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1703116773000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_comments_preview",
+      "parentId": "fld_comments_management",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/comments/preview",
+      "name": "Preview Comment",
+      "description": "Preview comment with markdown processing",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"content\": \"This is a **preview** of my comment with *markdown* support.\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.access_token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1703116772000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_comments_pending",
+      "parentId": "fld_comments_moderation",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/comments/pending",
+      "name": "Get Pending Comments",
+      "description": "Get all pending comments for moderation (Authors only)",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "order_by",
+          "value": "created_at",
+          "disabled": true
+        },
+        {
+          "name": "order",
+          "value": "desc",
+          "disabled": true
+        },
+        {
+          "name": "per_page",
+          "value": "20",
+          "disabled": true
+        }
+      ],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.access_token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1703116771000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_comments_moderate",
+      "parentId": "fld_comments_moderation",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/comments/1/moderate",
+      "name": "Moderate Comment",
+      "description": "Approve or reject a comment (Authors only)",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"action\": \"approve\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.access_token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1703116770000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_comments_bulk_moderate",
+      "parentId": "fld_comments_moderation",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/comments/bulk-moderate",
+      "name": "Bulk Moderate Comments",
+      "description": "Bulk approve, reject, or delete multiple comments (Authors only)",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"comment_ids\": [1, 2, 3],\n  \"action\": \"approve\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.access_token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1703116769000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_users_list",
+      "parentId": "fld_users",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/users",
+      "name": "List Users",
+      "description": "Get paginated list of users (Authenticated users)",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "filters[name][like]",
+          "value": "john",
+          "disabled": true
+        },
+        {
+          "name": "filters[email][like]",
+          "value": "example.com",
+          "disabled": true
+        },
+        {
+          "name": "order_by",
+          "value": "first_name",
+          "disabled": true
+        },
+        {
+          "name": "order",
+          "value": "asc",
+          "disabled": true
+        },
+        {
+          "name": "rpp",
+          "value": "10",
+          "disabled": true
+        },
+        {
+          "name": "page",
+          "value": "1",
+          "disabled": true
+        }
+      ],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.access_token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1703116768000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_users_show",
+      "parentId": "fld_users",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/users/1",
+      "name": "Get User by ID",
+      "description": "Get a specific user by ID (Authenticated users)",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.access_token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1703116767000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_users_create",
+      "parentId": "fld_users",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/users",
+      "name": "Create User",
+      "description": "Create a new user (Authenticated users)",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"email\": \"john.doe@example.com\",\n  \"password\": \"password123\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.access_token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1703116766000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_users_update",
+      "parentId": "fld_users",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/users/1",
+      "name": "Update User",
+      "description": "Update an existing user (Authenticated users)",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"first_name\": \"Jane\",\n  \"last_name\": \"Smith\",\n  \"email\": \"jane.smith@example.com\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.access_token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1703116765000,
+      "_type": "request"
+    },
+    {
+      "_id": "req_users_delete",
+      "parentId": "fld_users",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "url": "{{ _.base_url }}/api/users/1",
+      "name": "Delete User",
+      "description": "Delete a user (Authenticated users)",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ _.access_token }}"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1703116764000,
+      "_type": "request"
+    },
+    {
+      "_id": "fld_auth",
+      "parentId": "wrk_blog_backend",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "name": "🔐 Authentication",
+      "description": "Passwordless OTP authentication endpoints",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1703116800000,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_blogs",
+      "parentId": "wrk_blog_backend",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "name": "📝 Blogs (Public)",
+      "description": "Public blog endpoints - no authentication required",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1703116799000,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_blogs_management",
+      "parentId": "wrk_blog_backend",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "name": "📝 Blog Management",
+      "description": "Blog management endpoints - Authors only",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1703116798000,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_tags",
+      "parentId": "wrk_blog_backend",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "name": "🏷️ Tags (Public)",
+      "description": "Public tag endpoints - no authentication required",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1703116797000,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_tags_management",
+      "parentId": "wrk_blog_backend",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "name": "🏷️ Tag Management",
+      "description": "Tag management endpoints - Authors only",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1703116796000,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_comments",
+      "parentId": "wrk_blog_backend",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "name": "💬 Comments (Public)",
+      "description": "Public comment endpoints - no authentication required",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1703116795000,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_comments_management",
+      "parentId": "wrk_blog_backend",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "name": "💬 Comment Management",
+      "description": "Comment management endpoints - Authenticated users",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1703116794000,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_comments_moderation",
+      "parentId": "wrk_blog_backend",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "name": "💬 Comment Moderation",
+      "description": "Comment moderation endpoints - Authors only",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1703116793000,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_users",
+      "parentId": "wrk_blog_backend",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "name": "👥 Users",
+      "description": "User management endpoints - Authenticated users",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1703116792000,
+      "_type": "request_group"
+    },
+    {
+      "_id": "wrk_blog_backend",
+      "parentId": null,
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "name": "Laravel Blog Backend API",
+      "description": "Complete API collection for Laravel Blog Backend with passwordless OTP authentication, Redis caching, and role-based access control",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "env_base",
+      "parentId": "wrk_blog_backend",
+      "modified": 1703116800000,
+      "created": 1703116800000,
+      "name": "Base Environment",
+      "data": {
+        "base_url": "http://localhost:8000",
+        "access_token": ""
+      },
+      "dataPropertyOrder": {
+        "&": ["base_url", "access_token"]
+      },
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1703116800000,
+      "_type": "environment"
+    }
+  ]
+}
